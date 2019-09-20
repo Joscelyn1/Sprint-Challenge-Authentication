@@ -58,13 +58,18 @@ describe('auth-router.js', () => {
         });
     });
 
-    // it('should allow someone who is a user to login', async () => {
-    //   return request(server)
-    //     .post('/api/auth/login')
-    //     .send({ username: 'Rosa', password: 'donuts' })
-    //     .then(res => {
-    //       expect(res.status).toBe(1);
-    //     });
-    // });
+    it('should allow someone who is a user to login', async () => {
+      return request(server)
+        .post('/api/auth/register')
+        .send({ username: 'Mickey', password: 'Mouse' })
+        .then(res => {
+          return request(server)
+            .post('/api/auth/login')
+            .send({ username: 'Mickey', password: 'Mouse' })
+            .then(res => {
+              expect(res.status).toBe(200);
+            });
+        });
+    });
   });
 });
