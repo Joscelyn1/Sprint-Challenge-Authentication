@@ -10,5 +10,13 @@ router.get('/', restricted, (req, res) => {
     })
     .catch(err => res.send(err));
 });
+router.get('/:username', restricted, (req, res) => {
+  let username = req.params.username;
+  Users.findByName(username)
+    .then(user => {
+      res.json({ user, loggedInUser: req.user.username });
+    })
+    .catch(err => res.send(err));
+});
 
 module.exports = router;
