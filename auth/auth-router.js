@@ -44,7 +44,7 @@ function generateToken(user) {
   const options = {
     expiresIn: '1d'
   };
-  // bring in the secret from the secrets file
+
   return jwt.sign(payload, secrets.jwtSecret, options);
 }
 
